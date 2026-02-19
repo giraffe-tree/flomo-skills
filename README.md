@@ -1,34 +1,69 @@
 # flomo-skills
 
-这是一个帮你把 flomo 笔记保存到本地的工具仓库。
+把 flomo 和本地连起来的工具集，零基础也能用。
 
-当前已经支持 1 个能力：`flomo-sync`。
+## 已支持的能力
 
-## 它能做什么
+| 能力 | 作用 |
+|------|------|
+| **flomo-sync** | 支持把 flomo 里的所有笔记备份到电脑，变成 Markdown 文件，支持增量同步和附件下载 |
+| **flomo-add** | 往 flomo 里快速新增一条 memo |
 
-- 一键把 flomo 里的笔记备份到电脑
-- 每条笔记会变成一个 Markdown 文件（`.md`）
-- 笔记里的图片、音频等附件可以一起保存到本地
-- 再次运行时会自动“接着上次继续”，不用每次全量重来
+更多能力会陆续加入。
 
-## 适合谁用
+## 第一次使用（配置一次，两个能力共用）
 
-- 想长期保存 flomo 内容的人
-- 想把笔记放到 Obsidian 或本地文件夹管理的人
-- 担心云端数据丢失，想有本地备份的人
+ **写 flomo 配置**  
 
-## 你会得到什么结果
+   复制示例配置并改名为 `.flomo.config`，放在项目根目录，按说明填好：url + token
 
-- 每条 flomo 笔记对应一个 `.md` 文件
-- 图片/音频等附件默认会下载到 `images` 文件夹
-- 下次再运行时，工具会自动只同步新增或更新的内容
+```
+# ------------------------------------------------------------
+# 1) flomo-add 使用：url（Webhook）
+# ------------------------------------------------------------
+# webhook url 示例：
+#   https://flomoapp.com/iwh/M000000/abcdefg0000000000000000000000000/
+#
+# 该 URL 需要你在 flomo 中自行生成并妥善保管。
+
+url=
+
+#
+# ------------------------------------------------------------
+# 2) flomo-sync 使用：token（API 访问令牌）
+# ------------------------------------------------------------
+# 获取 token（推荐：从请求头获取）：
+#   1. 浏览器打开 https://v.flomoapp.com 并登录
+#   2. 按 F12 → Network（网络）标签页，刷新页面
+#   3. 点击任意一条 flomoapp.com 请求 → Headers → Request Headers
+#   4. 复制 Authorization 字段的完整值（含 Bearer 前缀）
+#
+# token 格式示例（以下两种均支持）：
+#   token=1023456|AA000000ABCDEFGHIJKHLMNOP000000000000000
+#   token=Bearer 1023456|AA000000ABCDEFGHIJKHLMNOP000000000000000
+
+token=
+
+```
+
+## 怎么用
+
+安装到你的 code agent 中即可
+
+name: flomo-sync
+description: 将 flomo 所有记录 memo 同步/备份到本地 Markdown 文件的工具。使用 scripts/flomo-sync.py 脚本通过 flomo API 拉取 memo，支持增量同步、附件下载、多文件输出。当用户需要备份 flomo、同步 flomo memo 到本地、导出 flomo 笔记为 Markdown 时使用。
+
+name: flomo-add
+description: 通过 Python requests 向 flomo webhook URL 新增一条 memo。使用 scripts/flomo-add.py 从 .flomo.config 读取 url 并发起 POST 请求，支持在 macOS 与 Windows 环境下添加 flomo 笔记。用户需要快速新增 flomo 记录、写入临时想法、或自动化写入单条 memo 时使用。
+
+详细参数和说明见各 skill 目录下的 `SKILL.md`。
 
 ## 常见问题
 
-- 提示“登录失败”或“sign 错误”：通常是 token 过期了，重新复制一次即可
-- 想换保存位置：改 `--dir` 后面的路径就行
-- 不想下载附件：可用 `--no-download`
+- **登录失败 / sign 错误**：多半是 token 过期，重新复制一次填进 `.flomo.config`
+- **想换备份目录**：改 `--dir` 后面的路径（必须写绝对路径）
+- **不想下载附件**：sync 时加 `--no-download`
 
-## 一句话总结
+---
 
-`flomo-sync` 就是：把你的 flomo 笔记，持续、自动地备份到本地 Markdown。
+一句话：**flomo-sync** 把笔记备份到本地，**flomo-add** 从本地往 flomo 发一条；配置一次，两个都能用，后续还会加更多能力。
