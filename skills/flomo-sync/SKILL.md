@@ -27,7 +27,7 @@ pip install requests markdownify
 ### 2. 配置 token
 
 ```bash
-cp assets/.flomo.config.example .flomo.config
+cp assets/.flomo.config.example /Users/xxx/project-name/.flomo.config
 # 编辑 .flomo.config，填入 token=<your_token>
 ```
 
