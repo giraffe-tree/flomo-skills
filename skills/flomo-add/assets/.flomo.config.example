@@ -1,0 +1,39 @@
+# flomo 工具统一配置文件（flomo-add / flomo-sync）
+# 格式：key=value，# 开头为注释，空行忽略
+#
+# 使用方法（任选其一）：
+#   cp skills/flomo-add/assets/.flomo.config.example .flomo.config
+#   cp skills/flomo-sync/assets/.flomo.config.example .flomo.config
+#   编辑 .flomo.config，按需填入 url / token
+
+#
+# ------------------------------------------------------------
+# 1) flomo-add 使用：url（Webhook）
+# ------------------------------------------------------------
+# webhook url 示例：
+#   https://flomoapp.com/iwh/M000000/abcdefg0000000000000000000000000/
+#
+# 该 URL 需要你在 flomo 中自行生成并妥善保管。
+
+url=
+
+#
+# ------------------------------------------------------------
+# 2) flomo-sync 使用：token（API 访问令牌）
+# ------------------------------------------------------------
+# 获取 token（推荐：从请求头获取）：
+#   1. 浏览器打开 https://v.flomoapp.com 并登录
+#   2. 按 F12 → Network（网络）标签页，刷新页面
+#   3. 点击任意一条 flomoapp.com 请求 → Headers → Request Headers
+#   4. 复制 Authorization 字段的完整值（含 Bearer 前缀）
+#
+# 备用方法（从 localStorage 获取）：
+#   1. 浏览器打开 https://v.flomoapp.com 并登录
+#   2. 按 F12 → Application（应用程序）→ Local Storage → https://v.flomoapp.com
+#   3. 找到 me 键，展开 Value，复制 access_token 字段的值
+#
+# token 格式示例（以下两种均支持）：
+#   token=1023456|AA000000ABCDEFGHIJKHLMNOP000000000000000
+#   token=Bearer 1023456|AA000000ABCDEFGHIJKHLMNOP000000000000000
+
+token=
