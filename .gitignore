@@ -1,0 +1,6 @@
+.flomo.config
+.flomo.lock
+output/
+__pycache__/
+.obsidian/
+
