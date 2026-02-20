@@ -18,12 +18,15 @@ description: 通过 Python requests 向 flomo webhook URL 新增一条 memo。�
 
 ## 配置（必须）
 
-```bash
-cp assets/.flomo.config.example /Users/xxx/project-name/.flomo.config
-# 编辑 .flomo.config，填入 url=https://flomoapp.com/iwh/...
-```
+在项目主路径下创建 `.flomo.config`，并包含 `url=<flomo webhook url>`。
 
-`.flomo.config` 使用 `key=value` 格式，`#` 开头行表示注释，与 `flomo-sync` 一致。
+### `.flomo.config` 格式说明
+
+- **通用规则**：一行一个 `key=value`；以 `#` 开头的行为注释；空行忽略。
+- **flomo-add 所需**：`url=<flomo webhook url>`  
+  示例：`url=https://flomoapp.com/iwh/M000000/abcdefg0000000000000000000000000/`  
+  该 URL 需在 flomo 的「扩展中心 & API」中生成并妥善保管。
+- 同一文件可同时包含 `token=` 供 flomo-sync 使用（与 flomo-sync 共用一配置文件）。
 
 ## 快速开始
 
@@ -68,6 +71,5 @@ skills/flomo-add/
 ├── SKILL.md
 ├── scripts/
 │   └── flomo-add.py
-└── assets/
-    └── .flomo.config.example
+└── assets/   # 预留
 ```

@@ -26,16 +26,20 @@ pip install requests markdownify
 
 ### 2. 配置 token
 
-```bash
-cp assets/.flomo.config.example /Users/xxx/project-name/.flomo.config
-# 编辑 .flomo.config，填入 token=<your_token>
-```
+在项目主路径下创建 `.flomo.config`，并包含 `token=<access_token>`。
 
 **安全建议（强烈推荐）**：
 - 优先使用 `.flomo.config` 保存 token，不要在对话中直接粘贴 token，避免泄露给 LLM。
 - 执行同步时优先使用 `python scripts/flomo-sync.py`（自动从 `.flomo.config` 读取）。
 
-**获取 token**：在浏览器打开 [https://v.flomoapp.com](https://v.flomoapp.com) 登录后，按 `F12` → Network → 点击任意请求 → Headers → 复制 `Authorization` 的值（形如 `Bearer 1023456|...`）。
+#### `.flomo.config` 格式说明
+
+- **通用规则**：一行一个 `key=value`；以 `#` 开头的行为注释；空行忽略。
+- **flomo-sync 所需**：`token=<access_token>`；支持带或不带 `Bearer ` 前缀，例如：
+  - `token=1023456|AA000000ABCDEFGHIJKHLMNOP000000000000000`
+  - `token=Bearer 1023456|AA000000ABCDEFGHIJKHLMNOP000000000000000`
+- **获取 token**：在浏览器打开 [https://v.flomoapp.com](https://v.flomoapp.com) 登录后，按 `F12` → Network → 点击任意请求 → Headers → 复制 `Authorization` 的值（形如 `Bearer 1023456|...`）。备用：Application → Local Storage → `me` → 复制 `access_token`。
+- 同一文件可同时包含 `url=` 供 flomo-add 使用（与 flomo-add 共用一配置文件）。
 
 ### 3. 运行同步
 
@@ -129,8 +133,7 @@ skills/flomo-sync/
 ├── SKILL.md
 ├── scripts/
 │   └── flomo-sync.py       # 主脚本
-└── assets/
-    └── .flomo.config.example  # 配置文件模板
+└── assets/                 # 预留
 ```
 
 运行后会在输出目录产生：

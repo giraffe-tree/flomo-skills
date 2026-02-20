@@ -17,37 +17,7 @@
 
 **flomo-sync** 把笔记备份到本地，**flomo-add** 从本地往 flomo 发一条；配置一次，两个都能用，后续还会加更多能力。
 
-复制示例配置并改名为 `.flomo.config`，放在项目根目录，按说明填好：url + token
-
-```
-# ------------------------------------------------------------
-# 1) flomo-add 使用：url（Webhook）
-# ------------------------------------------------------------
-# 打开  [flomo](https://v.flomoapp.com/mine)  - 扩展中心 & API 
-# url 示例：
-#   https://flomoapp.com/iwh/M000000/abcdefg0000000000000000000000000/
-# 
-# 该 URL 需要你在 flomo 中自行生成并妥善保管。
-
-url=
-
-#
-# ------------------------------------------------------------
-# 2) flomo-sync 使用：token（API 访问令牌）
-# ------------------------------------------------------------
-# 获取 token（推荐：从请求头获取）：
-#   1. 浏览器打开 https://v.flomoapp.com 并登录
-#   2. 按 F12 → Network（网络）标签页，刷新页面
-#   3. 点击任意一条 flomoapp.com 请求 → Headers → Request Headers
-#   4. 复制 Authorization 字段的完整值（含 Bearer 前缀）
-#
-# token 格式示例（以下两种均支持）：
-#   token=1023456|AA000000ABCDEFGHIJKHLMNOP000000000000000
-#   token=Bearer 1023456|AA000000ABCDEFGHIJKHLMNOP000000000000000
-
-token=
-
-```
+在项目根目录创建 `.flomo.config`，按各技能 SKILL.md 中的格式说明填好 `url`（flomo-add 用）与 `token`（flomo-sync 用）。格式为 `key=value` 一行一个，`#` 开头为注释。
 
 ## 怎么用
 

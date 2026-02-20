@@ -50,7 +50,7 @@ def main() -> int:
         config = parse_kv_config(config_path)
     except FileNotFoundError as exc:
         print(str(exc), file=sys.stderr)
-        print("请先复制模板: cp skills/flomo-add/assets/.flomo.config.example .flomo.config", file=sys.stderr)
+        print("请先在当前目录创建 .flomo.config 并配置 url=<webhook_url>，格式见 skills/flomo-add/SKILL.md", file=sys.stderr)
         return 2
 
     url = (args.url or config.get("url", "")).strip()
